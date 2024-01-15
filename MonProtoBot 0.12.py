@@ -11,7 +11,7 @@ model = whisper.load_model("base")
 
 def transcribe_audio():
     sd.default.device = 1
-    duration = 3  # Durée réduite à 3 secondes
+    duration = 3  
     samplerate = 18000
 
     print("Enregistrement en cours...")
@@ -28,8 +28,8 @@ def transcribe_audio():
 
 def connectobs():
     host = "localhost"
-    port = 4455  # Remplacez par le port de votre serveur WebSocket OBS
-    password = "f08H00EOsj0FmOpP"  # Si vous avez configuré un mot de passe
+    port = 4455  
+    password = "f08H00EOsj0FmOpP"  
 
     ws = obsws(host, port, password)
     ws.connect()
