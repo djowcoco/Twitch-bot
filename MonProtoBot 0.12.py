@@ -67,4 +67,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Arrêt du script par l'utilisateur")
         ws.disconnect()
-        #salut a tous 
+
+#bosser sur la biblio pokemon
