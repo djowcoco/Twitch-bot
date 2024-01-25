@@ -9,15 +9,15 @@ logging.basicConfig(level=logging.DEBUG)
 
 model = whisper.load_model("base")
 
-def transcribe_audio():
+def transcribe_audio(): #temps de record pour prendre ma commande vocal en compte .. Pas la meilleure solution j'imagine
     sd.default.device = 1
     duration = 3  
     samplerate = 18000
 
-    print("Enregistrement en cours...")
+    print("rec") #mise a l'ecrit de ma prise de parole pour detecter des mots clefs 
     recording = sd.rec(int(duration * samplerate), samplerate=samplerate, channels=1)
     sd.wait()
-    print("Enregistrement terminé.")
+    print("rec end")
 
     audio = np.array(recording).astype(np.float32).flatten()
     print("Taille de l'audio:", audio.size)
@@ -26,7 +26,7 @@ def transcribe_audio():
     print("Texte transcrit en français : ", result["text"])
     return result["text"]
 
-def connectobs():
+def connectobs(): #interâhe de connection pour obs
     host = "localhost"
     port = 4455  
     password = "f08H00EOsj0FmOpP"  
@@ -43,7 +43,7 @@ def show__or_hide_source(ws,source_name,enabled):
     sceneItemId = result.getSceneItemId()
     ws.call(requests.SetSceneItemEnabled(sceneName=sceneName, sceneItemId=sceneItemId, sceneItemEnabled=enabled))
 
-def show_source(ws,source_name):
+def show_source(ws,source_name): #appel via la commande vocal sur obs pour afficher et cacher les sources
     show__or_hide_source(ws,source_name,True)
 
 def hide_source(ws,source_name):
@@ -69,3 +69,4 @@ if __name__ == "__main__":
         ws.disconnect()
 
 #bosser sur la biblio pokemon
+#trouver une meilleurs facon pour prendre en compte une commande vocale 
